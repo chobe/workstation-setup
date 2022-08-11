@@ -1,0 +1,16 @@
+---
+- name: Install Systems Packages
+  become: true
+  package:
+    name:
+      - "curl"
+      - "git"
+      - "htop"
+      - "zsh"
+      - "python3-pip"
+      - "compton"
+      - "moreutils"
+  tags:
+    - install
+    - core
+...

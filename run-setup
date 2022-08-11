@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "Running commands as a root user..."
+
+sudo apt update
+sudo apt install ansible software-properties-common -y
+
+echo "All done."
+
+# ansible-pull -U https://github.com/chobe/workstation-setup.git --ask-vault-pass

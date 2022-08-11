@@ -1,0 +1,27 @@
+- name: Dotfiles exists
+  stat:
+    path: "{{ personal }}/dotfiles"
+  register: dotfiles
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+
+- name: Personal Project Dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:chobe/dotfiles.git'
+    bare: true
+    dest: "{{ personal }}/dotfiles"
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: dotfiles.stat.exists == False
+
+- name: Dotfiles Master Checkout
+  shell: cd ~/personal/dotfiles && git fetch && git worktree add master master
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: dotfiles.stat.exists == False
