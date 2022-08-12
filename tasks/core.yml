@@ -10,6 +10,7 @@
       - "python3-pip"
       - "compton"
       - "moreutils"
+      - "neovim"
   tags:
     - install
     - core

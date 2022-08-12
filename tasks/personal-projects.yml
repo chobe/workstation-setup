@@ -19,9 +19,65 @@
   when: dotfiles.stat.exists == False
 
 - name: Dotfiles Master Checkout
-  shell: cd ~/personal/dotfiles && git fetch && git worktree add master master
+  shell: cd ~/personal/dotfiles && git fetch && git worktree add main main
   tags:
     - install
     - dotfiles
     - personal-project
   when: dotfiles.stat.exists == False
+
+- name: Chobe exists
+  stat:
+    path: "{{ personal }}/chobe"
+  register: chobe
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+
+- name: Personal Project Chobe
+  ansible.builtin.git:
+    repo: 'git@github.com:chobe/chobe.git'
+    bare: true
+    dest: "{{ personal }}/chobe"
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: chobe.stat.exists == False
+
+- name: Chobe Master Checkout
+  shell: cd ~/personal/chobe && git fetch && git worktree add main main
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: chobe.stat.exists == False
+
+- name: Setup exists
+  stat:
+    path: "{{ personal }}/workstation-setup"
+  register: setup
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+
+- name: Personal Project Setup
+  ansible.builtin.git:
+    repo: 'git@github.com:chobe/workstation-setup.git'
+    bare: true
+    dest: "{{ personal }}/workstation-setup"
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: setup.stat.exists == False
+
+- name: Setup Master Checkout
+  shell: cd ~/personal/workstation-setup && git fetch && git worktree add main main
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: setup.stat.exists == False
