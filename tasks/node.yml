@@ -1,0 +1,19 @@
+- name: Download pnpm
+  become: true
+  get_url:
+    url: https://get.pnpm.io/install.sh
+    dest: /tmp/pnpm-install.sh
+    mode: a+x
+  tags:
+    - install
+    - node
+    - pnpm
+
+- name: Install pnpm
+  become: true
+  script: /tmp/pnpm-install.sh
+  tags:
+    - install
+    - node
+    - pnpm
+
