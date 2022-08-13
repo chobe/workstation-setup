@@ -11,7 +11,9 @@
       - "compton"
       - "moreutils"
       - "apt-transport-https"
-      - "libfuse2"
+      - "build-essential"
+      - "cmake"
+      - "pkg-config"
   tags:
     - install
     - core
