@@ -18,7 +18,7 @@
     - personal-project
   when: dotfiles.stat.exists == False
 
-- name: Dotfiles Master Checkout
+- name: Dotfiles Main Checkout
   shell: cd ~/personal/dotfiles && git fetch && git worktree add main main
   tags:
     - install
@@ -32,7 +32,7 @@
   register: chobe
   tags:
     - install
-    - dotfiles
+    - chobe
     - personal-project
 
 - name: Personal Project Chobe
@@ -42,15 +42,15 @@
     dest: "{{ personal }}/chobe"
   tags:
     - install
-    - dotfiles
+    - chobe
     - personal-project
   when: chobe.stat.exists == False
 
-- name: Chobe Master Checkout
+- name: Chobe Main Checkout
   shell: cd ~/personal/chobe && git fetch && git worktree add main main
   tags:
     - install
-    - dotfiles
+    - chobe
     - personal-project
   when: chobe.stat.exists == False
 
@@ -60,7 +60,7 @@
   register: setup
   tags:
     - install
-    - dotfiles
+    - setup
     - personal-project
 
 - name: Personal Project Setup
@@ -70,14 +70,42 @@
     dest: "{{ personal }}/workstation-setup"
   tags:
     - install
-    - dotfiles
+    - setup
     - personal-project
   when: setup.stat.exists == False
 
-- name: Setup Master Checkout
+- name: Setup Main Checkout
   shell: cd ~/personal/workstation-setup && git fetch && git worktree add main main
   tags:
     - install
-    - dotfiles
+    - setup
     - personal-project
   when: setup.stat.exists == False
+
+- name: Hogar exists
+  stat:
+    path: "{{ personal }}/hogar.gt"
+  register: hogar
+  tags:
+    - install
+    - hogar
+    - personal-project
+
+- name: Personal Project Hogar
+  ansible.builtin.git:
+    repo: 'git@github.com:hogargt/hogar.gt.git'
+    bare: true
+    dest: "{{ personal }}/hogar.gt"
+  tags:
+    - install
+    - hogar
+    - personal-project
+  when: hogar.stat.exists == False
+
+- name: Hogar Main Checkout
+  shell: cd ~/personal/hogar.gt && git fetch && git worktree add main main
+  tags:
+    - install
+    - hogar
+    - personal-project
+  when: hogar.stat.exists == False
