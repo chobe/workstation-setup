@@ -25,3 +25,14 @@
   when: oh_my_stats.stat.exists == False
   become_user: chobe
 
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh
+
+- name: Install passion theme
+  get_url:
+    url: https://raw.githubusercontent.com/ChesterYue/ohmyzsh-theme-passion/master/passion.zsh-theme
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes"
+  tags: *tags_for_zsh
