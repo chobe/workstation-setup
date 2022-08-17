@@ -15,6 +15,7 @@
       - "cmake"
       - "pkg-config"
       - "tmux"
+      - "fzf"
   tags:
     - install
     - core
