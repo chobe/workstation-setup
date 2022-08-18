@@ -8,7 +8,7 @@
 
 - name: Stow dotfiles
   become_user: chobe
-  shell: cd $HOME/personal/dotfiles/main && ./install
+  shell: cd $HOME/personal/dotfiles && ./install
   tags:
     - install
     - dotfiles
