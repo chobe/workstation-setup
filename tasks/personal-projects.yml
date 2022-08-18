@@ -10,7 +10,6 @@
 - name: Personal Project Dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:chobe/dotfiles.git'
-    bare: true
     dest: "{{ personal }}/dotfiles"
   tags:
     - install
@@ -30,7 +29,6 @@
 - name: Personal Project Chobe
   ansible.builtin.git:
     repo: 'git@github.com:chobe/chobe.git'
-    bare: true
     dest: "{{ personal }}/chobe"
   tags:
     - install
@@ -50,7 +48,6 @@
 - name: Personal Project Setup
   ansible.builtin.git:
     repo: 'git@github.com:chobe/workstation-setup.git'
-    bare: true
     dest: "{{ personal }}/workstation-setup"
   tags:
     - install
@@ -70,7 +67,6 @@
 - name: Personal Project Hogar
   ansible.builtin.git:
     repo: 'git@github.com:hogargt/hogar.gt.git'
-    bare: true
     dest: "{{ personal }}/hogar.gt"
   tags:
     - install
