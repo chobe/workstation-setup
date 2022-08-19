@@ -73,3 +73,22 @@
     - hogar
     - personal-project
   when: hogar.stat.exists == False
+
+- name: SiteKit exists
+  stat:
+    path: "{{ personal }}/sitekit.gt"
+  register: sitekit
+  tags:
+    - install
+    - sitekit
+    - personal-project
+
+- name: Personal Project SiteKit
+  ansible.builtin.git:
+    repo: 'git@github.com:chobe/sitekit.git'
+    dest: "{{ personal }}/sitekit"
+  tags:
+    - install
+    - sitekit
+    - personal-project
+  when: sitekit.stat.exists == False

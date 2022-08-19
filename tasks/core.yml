@@ -18,6 +18,7 @@
       - "fzf"
       - "i3"
       - "dconf-editor"
+      - "pavucontrol"
   tags:
     - install
     - core
