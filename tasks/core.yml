@@ -19,6 +19,7 @@
       - "i3"
       - "dconf-editor"
       - "pavucontrol"
+      - "tree"
   tags:
     - install
     - core
