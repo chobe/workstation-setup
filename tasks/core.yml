@@ -35,4 +35,10 @@
   tags:
     - install
     - core
-...
+
+- name: remove packages
+  package:
+    state: absent
+    name:
+      - vim.tiny
+      - vim
